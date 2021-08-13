@@ -42,6 +42,11 @@ const sendVerificationEmail = catchAsync(async (req, res) => {
   res.status(httpStatus.NO_CONTENT).send();
 });
 
+const sendTradingSignalEmail = catchAsync(async (req, res) => {
+  await emailService.sendTradingSignalEmail(req.body.email, req.body.token, req.body.signal);
+  res.status(httpStatus.NO_CONTENT).send();
+});
+
 const verifyEmail = catchAsync(async (req, res) => {
   await authService.verifyEmail(req.query.token);
   res.status(httpStatus.NO_CONTENT).send();
@@ -55,5 +60,6 @@ module.exports = {
   forgotPassword,
   resetPassword,
   sendVerificationEmail,
+  sendTradingSignalEmail,
   verifyEmail,
 };

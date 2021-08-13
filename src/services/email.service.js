@@ -55,9 +55,23 @@ If you did not create an account, then ignore this email.`;
   await sendEmail(to, subject, text);
 };
 
+/**
+ * Send verification email
+ * @param {string} to
+ * @param {string} token
+ * @param {string} signal
+ * @returns {Promise}
+ */
+const sendTradingSignalEmail = async (to, token, signal) => {
+  const subject = `${signal} ${token}`;
+  const text = `It looks like you need to ${subject}!!! Happy Profiting!`;
+  await sendEmail(to, subject, text);
+};
+
 module.exports = {
   transport,
   sendEmail,
   sendResetPasswordEmail,
   sendVerificationEmail,
+  sendTradingSignalEmail,
 };
